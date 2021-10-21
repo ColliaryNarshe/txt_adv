@@ -1,4 +1,4 @@
-from engine import Engine
+from engine.engine import Engine
 
 
 class Room1:
@@ -160,7 +160,7 @@ class Room9:
 
 class Room10:
     def __init__(self):
-        self.first_enter_txt = "The narrow hallway opens up to a wider chamber with a high ceiling. You watch your footing as you walk across the uneven footing of broken stone slabs."
+        self.first_enter_txt = "The narrow hallway opens up to a wider chamber with a high ceiling. You step carefully as you make your way across the uneven stone slabs and mounds of dirt."
         self.first_time = True
         self.return_txt = "You've returned to the open hallway."
         self.location = 10

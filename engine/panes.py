@@ -1,6 +1,6 @@
 import pygame
-from action_menu import ActionMenu
-from map import Map
+from engine.action_menu import ActionMenu
+from engine.map import Map
 
 PANE_WIDTH = 250
 CONSOLE_HEIGHT = 450

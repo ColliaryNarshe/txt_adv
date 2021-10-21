@@ -1,14 +1,14 @@
 import pygame
 pygame.init()
 
-from panes import Panes
-from keyboard_input import keyboard_input
-from engine_rooms import init_rooms
+from engine.panes import Panes
+from engine.keyboard_input import keyboard_input
+from engine.engine_rooms import init_rooms
 
 
 # If you change FPS it will alter speed of scrolling when holding down arrows
 FPS = 10
-BACKGROUND_COLOR = 'grey30' #'cadetblue4' # "darkslategrey" # 'darkgreen'
+BACKGROUND_COLOR = 'grey30'
 
 # Window:
 WIN = pygame.display.set_mode((1400,1000))

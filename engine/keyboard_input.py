@@ -1,7 +1,7 @@
 import pygame
 from sys import exit
 
-# Dot event
+# Dot event (blinking)
 dot_event = pygame.USEREVENT + 1
 pygame.time.set_timer(dot_event, 900)
 
@@ -10,36 +10,35 @@ arrow_event = pygame.USEREVENT + 2
 pygame.time.set_timer(arrow_event, 150)
 
 going_north = False
-# Used for arrows holding down
-down = 2
-up = 2
+
+# Used when holding down arrow keys to scroll menu
+arrow_count = 2
 
 def keyboard_input(panes, engine):
     global going_north
-    global down
-    global up
+    global arrow_count
 
     # Keys_pressed checked below with timed event
     keys_pressed = pygame.key.get_pressed()
     if keys_pressed[pygame.K_DOWN]:
-        down += 1
-        if down >= 2:
+        arrow_count += 1
+        if arrow_count >= 2:
             engine.menu_sound.play()
             engine.menu_sound.set_volume(.3)
             panes.action_menu.move_down()
-            down = 0
+            arrow_count = 0
     else:
-        down = 2
+        arrow_count = 2
 
     if keys_pressed[pygame.K_UP]:
-        up += 1
-        if up >= 2:
+        arrow_count += 1
+        if arrow_count >= 2:
             engine.menu_sound.play()
             engine.menu_sound.set_volume(.3)
             panes.action_menu.move_up()
-            up = 0
+            arrow_count = 0
     else:
-        up = 2
+        arrow_count = 2
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -52,16 +51,6 @@ def keyboard_input(panes, engine):
 
         # Arrow keys for menu select (one at a time no holding):
         if event.type == pygame.KEYDOWN:
-            # if event.key == pygame.K_DOWN:
-                # engine.menu_sound.play()
-                # engine.menu_sound.set_volume(.3)
-                # panes.action_menu.move_down()
-            #
-            # if event.key == pygame.K_UP:
-            #     engine.menu_sound.play()
-            #     engine.menu_sound.set_volume(.3)
-            #     panes.action_menu.move_up()
-
             # WASD shortcut movements:
             if engine.menu_state != 'choice' and engine.menu_state != 'characters' and engine.menu_state != 'items':
                 if event.key == pygame.K_w:
@@ -73,10 +62,11 @@ def keyboard_input(panes, engine):
                     new_room(2, panes, engine)
                 if event.key == pygame.K_d:
                     new_room(3, panes, engine)
-                # if event.key == pygame.K_i:  # Removed because no point, just press enter
-                #     engine.inspect_room()
+
+
                 if event.key == pygame.K_m:
                     engine.zoom = not engine.zoom
+
                 # if event.key == pygame.K_f:
                 #     # will need to make fog of war rects adjustable sizes rather than set, otherwise works.
                 #     panes.item_menu.WIN = pygame.display.set_mode((0,0), pygame.FULLSCREEN)

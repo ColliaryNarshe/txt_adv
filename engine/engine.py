@@ -1,7 +1,7 @@
 import textwrap
 import random
-from characters import init_characters, enemy_group
-from battle import battle
+from engine.characters import init_characters, enemy_group
+from engine.battle import battle
 import pygame
 
 WRAP_NUM = 59
@@ -13,7 +13,7 @@ class Engine:
         self.current_room = room_list[1]
         self.previous_room = None
         self.room_list = room_list
-        self.complete_text = []  # Console txt 
+        self.complete_text = []  # Console txt
         self.game_over = False
         self.restart = False
         self.menu_state = 'main'
