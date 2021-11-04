@@ -5,8 +5,10 @@ class Map:
         self.MAP_WIDTH = map_width
         self.MAP_HEIGHT = map_height
         self.current_room = 1
-        if zoom: x = 2
-        else: x = 1
+        # Changed resolution so had to change numbers (from 2 and 1) since box
+        # dimensions are hard coded
+        if zoom: x = 1.6
+        else: x = .8
 
         self.fog_dict = {
             2: [int(map_width * .12), int(map_height * .59), 87*x, 127*x],

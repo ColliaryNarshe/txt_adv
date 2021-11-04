@@ -2,9 +2,9 @@ import pygame
 from engine.action_menu import ActionMenu
 from engine.map import Map
 
-PANE_WIDTH = 250
-CONSOLE_HEIGHT = 450
-ACTION_MENU_HEIGHT = 450
+PANE_WIDTH = 200
+CONSOLE_HEIGHT = 350
+ACTION_MENU_HEIGHT = 350
 PANE_SPACING = 10 # Spacing around panes
 
 BORDER_COLOR = 'Grey50' #'cadetblue3' # 'dodgerblue4'
@@ -26,7 +26,7 @@ class ItemMenu:
         self.RIGHTSIDE = self.WIN.get_width() - WIN_BORDER_WIDTH - (PANE_BORDER_WIDTH//2) - PANE_SPACING
         self.TOPSIDE = WIN_BORDER_WIDTH + (PANE_BORDER_WIDTH//2) + PANE_SPACING
         self.MENU_INDENT = 15
-        self.MENU_SPACING = 40
+        self.MENU_SPACING = 32
         self.FONT_COLOR = 'Black'
 
         # Text surface/rect:
@@ -34,8 +34,8 @@ class ItemMenu:
         self.menu_rect = self.txt_sur.get_rect(topright=(self.RIGHTSIDE, self.TOPSIDE))
 
         # Text for menu items
-        self.menu_font = pygame.font.SysFont('georgia', 30, 0)
-        self.menu_font_bold = pygame.font.SysFont('georgia', 35, 1)
+        self.menu_font = pygame.font.SysFont('georgia', 21, 0)
+        self.menu_font_bold = pygame.font.SysFont('georgia', 26, 1)
 
 
     def display_txt(self):
@@ -47,9 +47,10 @@ class ItemMenu:
         for num in range(len(self.items)):
             if self.items[num][1] > 0:
                 rendered_font = self.menu_font.render(self.items[num][0] +f": {self.items[num][1]}" , 1, self.FONT_COLOR)
-                font_rect = rendered_font.get_rect(topleft=(self.MENU_INDENT, 55 + (self.MENU_SPACING * count)))
+                font_rect = rendered_font.get_rect(topleft=(self.MENU_INDENT, 44 + (self.MENU_SPACING * count)))
                 self.txt_sur.blit(rendered_font, font_rect)
                 count += 1
+
 
     def display_menu(self):
         self.WIN.blit(self.txt_sur, self.menu_rect)
@@ -68,14 +69,14 @@ class CharacterPane:
         self.PANE_HEIGHT = self.WIN.get_height() - (WIN_BORDER_WIDTH * 2) - (PANE_BORDER_WIDTH) - (PANE_SPACING * 2)
         self.LEFTSIDE = WIN_BORDER_WIDTH + (PANE_BORDER_WIDTH//2) + PANE_SPACING
         self.TOPSIDE = WIN_BORDER_WIDTH + (PANE_BORDER_WIDTH//2) + PANE_SPACING
-        self.NAME_FONT_SIZE = 35
-        self.HP_FONT_SIZE = 30
+        self.NAME_FONT_SIZE = 23
+        self.HP_FONT_SIZE = 21
         self.FONT_COLOR = (30,30,30)
         self.FONT_COLOR_HP = 'Brown'
-        self.NAMES_SPACING = 186
-        self.UNDER_NAME_SPACE = 55 # Between name and HP
-        self.HP_BAR_LENGTH = 180
-        self.HP_BAR_HEIGHT = 25
+        self.NAMES_SPACING = 150
+        self.UNDER_NAME_SPACE = 44 # Between name and HP
+        self.HP_BAR_LENGTH = 150
+        self.HP_BAR_HEIGHT = 20
         # Font lists:
         self.name_font_list = []
         self.name_font_rect_list = []
@@ -132,8 +133,8 @@ class CharacterPane:
                 char_hp_length = self.HP_BAR_LENGTH // (char.health_max / char.health)
             else:
                 char_hp_length = 0
-            bg_hp_bar = pygame.Rect(20, 15 + (self.NAMES_SPACING * idx) + self.UNDER_NAME_SPACE + 30, self.HP_BAR_LENGTH, self.HP_BAR_HEIGHT)
-            hp_bar = pygame.Rect(20, 15 + (self.NAMES_SPACING * idx) + self.UNDER_NAME_SPACE + 30, char_hp_length, self.HP_BAR_HEIGHT)
+            bg_hp_bar = pygame.Rect(20, 10 + (self.NAMES_SPACING * idx) + self.UNDER_NAME_SPACE + 25, self.HP_BAR_LENGTH, self.HP_BAR_HEIGHT)
+            hp_bar = pygame.Rect(20, 10 + (self.NAMES_SPACING * idx) + self.UNDER_NAME_SPACE + 25, char_hp_length, self.HP_BAR_HEIGHT)
             pygame.draw.rect(self.character_sur, 'OrangeRed', hp_bar)
             pygame.draw.rect(self.character_sur, 'Black', bg_hp_bar, 3)
             pygame.draw.rect(self.character_sur, 'Black', hp_bar, 3)
@@ -145,8 +146,8 @@ class CharacterPane:
             else:
                 char_mp_length = 0
             if char.mp_max:
-                bg_hp_bar = pygame.Rect(20, 15 + (self.NAMES_SPACING * idx) + (self.UNDER_NAME_SPACE * 2) + 40, self.HP_BAR_LENGTH, self.HP_BAR_HEIGHT)
-                hp_bar = pygame.Rect(20, 15 + (self.NAMES_SPACING * idx) + (self.UNDER_NAME_SPACE * 2) + 40, char_mp_length, self.HP_BAR_HEIGHT)
+                bg_hp_bar = pygame.Rect(20, 10 + (self.NAMES_SPACING * idx) + (self.UNDER_NAME_SPACE * 2) + 34, self.HP_BAR_LENGTH, self.HP_BAR_HEIGHT)
+                hp_bar = pygame.Rect(20, 10 + (self.NAMES_SPACING * idx) + (self.UNDER_NAME_SPACE * 2) + 34, char_mp_length, self.HP_BAR_HEIGHT)
                 pygame.draw.rect(self.character_sur, 'Light Blue', hp_bar)
                 pygame.draw.rect(self.character_sur, 'Black', bg_hp_bar, 3)
                 pygame.draw.rect(self.character_sur, 'Black', hp_bar, 3)
@@ -156,7 +157,7 @@ class ConsolePane:
     def __init__(self, WIN, engine):
         self.WIN = WIN
         self.engine = engine
-        self.FONT_SIZE = 30
+        self.FONT_SIZE = 23
         self.CONSOLE_COLOR = 'Black'
         self.TEXT_COLOR = 'White'
         self.CONSOLE_WIDTH = self.WIN.get_width() - (PANE_WIDTH * 2) - (WIN_BORDER_WIDTH * 2) - (PANE_BORDER_WIDTH * 3)  - (PANE_SPACING * 2)
@@ -235,13 +236,13 @@ class MapPane:
         for idx, room in enumerate(self.engine.room_list[2:]):  # Omit 0-1 0=None 1=starting room
             if room.fog_on and no_map:
                 rect_test = pygame.Rect(map.fog_dict[idx+2][0], map.fog_dict[idx+2][1], map.fog_dict[idx+2][2], map.fog_dict[idx+2][3])
-                pygame.draw.rect(surf, 'black', rect_test)
+                pygame.draw.rect(surf, 'Black', rect_test)
                 # This added because of one wall shared by two room. Draw only if both rooms have fog.
                 if room.location == 9 or room.location == 12:
                     count += 1
                     if count == 2:
                         rect_test = pygame.Rect(map.fog_dict[9.12][0], map.fog_dict[9.12][1], map.fog_dict[9.12][2], map.fog_dict[9.12][3])
-                        pygame.draw.rect(surf, 'black', rect_test)
+                        pygame.draw.rect(surf, 'Black', rect_test)
 
         # Draw location marker:
         if self.show_dot:

@@ -11,7 +11,7 @@ FPS = 10
 BACKGROUND_COLOR = 'grey30'
 
 # Window:
-WIN = pygame.display.set_mode((1400,1000))
+WIN = pygame.display.set_mode((1120, 800))
 pygame.display.set_caption("RPG")
 time = pygame.time.Clock()
 

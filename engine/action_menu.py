@@ -13,7 +13,7 @@ class ActionMenu:
         self.BOTTOMSIDE = self.WIN.get_height() - WIN_BORDER_WIDTH - (PANE_BORDER_WIDTH//2) - PANE_SPACING
         self.MENU_CENTER = self.MENU_WIDTH // 2
         self.MENU_SPACING = 10
-        self.FONT_SIZE = 27
+        self.FONT_SIZE = 21
         self.FONT_COLOR = (30,30,30)
         self.PANE_COLOR = PANE_COLOR
         self.BORDER_COLOR = BORDER_COLOR
