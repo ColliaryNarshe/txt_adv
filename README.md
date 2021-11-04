@@ -2,8 +2,7 @@ First attempt using pygame. A short text adventure game meant to be highly luck 
 
 Controls:<br>
 WASD: movement<br>
-arrows: menu<br>
-ENTER: menu<br>
+arrows + Enter: menu<br>
 m: Toggle map zoom
 
 Simply run main.py to start.
